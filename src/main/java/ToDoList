@@ -1,0 +1,10 @@
+- Create `entity` class to define instances variable about basically information of User =>
+    + Create DB, Tables
+- Repository to perform basic operations with the database, extends JPARepository.
+- Defines a DTO class to authenticate user requests
+- Defines a Service class to transfer data
+    + Initialize Service Interface
+    + Creating an account and saving a new user into the DB (Convert DTO to Entity)
+    + Check user email if already
+    + Creating successful code and message
+- Defines Controller to receive request
