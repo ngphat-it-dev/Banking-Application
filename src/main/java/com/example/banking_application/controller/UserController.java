@@ -1,15 +1,14 @@
 package com.example.banking_application.controller;
 
-import com.example.banking_application.dto.BankResponse;
-import com.example.banking_application.dto.EmailDetails;
-import com.example.banking_application.dto.EnquiryRequest;
-import com.example.banking_application.dto.UserRequest;
+import com.example.banking_application.dto.*;
 import com.example.banking_application.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.banking_application.service.UserService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/user")
@@ -29,8 +28,17 @@ public class UserController {
     }
 
     @GetMapping("nameEnquiry")
-    public String nameEnquiry(@RequestBody EnquiryRequest request){
-        return userService.nameEnquiry(request);
+    public ResponseEntity<String> nameEnquiry(@RequestBody EnquiryRequest request){
+        return new ResponseEntity<>(userService.nameEnquiry(request),HttpStatus.OK);
     }
 
+    @PostMapping("credit")
+    public ResponseEntity<BankResponse> creditAccount(@RequestBody CreditDebitRequest request){
+        return new ResponseEntity<>(userService.creditAccount(request),HttpStatus.OK);
+    }
+
+    @PostMapping("debit")
+    public ResponseEntity<BankResponse> debitAccount(@RequestBody CreditDebitRequest request){
+        return new ResponseEntity<>(userService.debitAccount(request),HttpStatus.OK);
+    }
 }
